@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Tips
 //
-//  Created by Gooby  on 11/26/15.
+//  Created by Isis on 11/26/15.
 //  Copyright © 2015 codepath. All rights reserved.
 //
 
