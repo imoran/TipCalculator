@@ -27,13 +27,17 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Walkthrough](BasicTipCalculatorRecord.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Describe any challenges encountered while building the app:
+The only challenge I faced was trying to convert the changes from iOS 7 to iOS 9 from the tutorial video
+we received. Namely, the billField.text.bridgeToObjectiveC().doubleValue to the new version:
+NSString(string: billField.text!).doubleValue. Besides that, I appreciated how the video was straightforward and 
+easy to follow. 
 
 ## License
 
