@@ -12,6 +12,7 @@
 		63B3E8C21C0820A800130B1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B3E8C01C0820A800130B1B /* Main.storyboard */; };
 		63B3E8C41C0820A800130B1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B3E8C31C0820A800130B1B /* Assets.xcassets */; };
 		63B3E8C71C0820A800130B1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B3E8C51C0820A800130B1B /* LaunchScreen.storyboard */; };
+		63C17AD51C1178FF00DAE9D0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C17AD41C1178FE00DAE9D0 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		63B3E8C31C0820A800130B1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63B3E8C61C0820A800130B1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63B3E8C81C0820A800130B1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63C17AD41C1178FE00DAE9D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Tips/SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		63B3E8B01C0820A800130B1B = {
 			isa = PBXGroup;
 			children = (
+				63C17AD41C1178FE00DAE9D0 /* SettingsViewController.swift */,
 				63B3E8BB1C0820A800130B1B /* Tips */,
 				63B3E8BA1C0820A800130B1B /* Products */,
 			);
@@ -137,6 +140,7 @@
 			files = (
 				63B3E8BF1C0820A800130B1B /* ViewController.swift in Sources */,
 				63B3E8BD1C0820A800130B1B /* AppDelegate.swift in Sources */,
+				63C17AD51C1178FF00DAE9D0 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +290,7 @@
 				63B3E8CD1C0820A800130B1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
