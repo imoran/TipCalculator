@@ -23,7 +23,7 @@
 		63B3E8C31C0820A800130B1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63B3E8C61C0820A800130B1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63B3E8C81C0820A800130B1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		63C17AD41C1178FE00DAE9D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Tips/SettingsViewController.swift; sourceTree = "<group>"; };
+		63C17AD41C1178FE00DAE9D0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,6 @@
 		63B3E8B01C0820A800130B1B = {
 			isa = PBXGroup;
 			children = (
-				63C17AD41C1178FE00DAE9D0 /* SettingsViewController.swift */,
 				63B3E8BB1C0820A800130B1B /* Tips */,
 				63B3E8BA1C0820A800130B1B /* Products */,
 			);
@@ -60,6 +59,7 @@
 				63B3E8BC1C0820A800130B1B /* AppDelegate.swift */,
 				63B3E8BE1C0820A800130B1B /* ViewController.swift */,
 				63B3E8C01C0820A800130B1B /* Main.storyboard */,
+				63C17AD41C1178FE00DAE9D0 /* SettingsViewController.swift */,
 				63B3E8C31C0820A800130B1B /* Assets.xcassets */,
 				63B3E8C51C0820A800130B1B /* LaunchScreen.storyboard */,
 				63B3E8C81C0820A800130B1B /* Info.plist */,
