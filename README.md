@@ -36,6 +36,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app:
+
 This was my first try at the Swift language, so naturally, it was a bit difficult. One thing that really got me was the animation portion. When I failed to get the animation going, I originally thought that the code for my animation would be flawed...I did not think that the rest of the code would be responsible for its lack of function (I saw blocks of code as independent functions, not part of a whole). All in all I learned not only about the Swift programming language, but also how to better my skills of debugging and trying to find ways to make the code more coherent and see it as a working machine as opposed to separate pieces completely. Although I must admit, it was quite difficult to get information from online sources, since many of them contained outdated codes and options that were no longer supported by the new Xcode. Overall, a good learning experience!
 
 ## License
