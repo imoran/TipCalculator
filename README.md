@@ -4,24 +4,26 @@ TipCalculator is a tip calculator application for iOS.
 
 Submitted by: Isis Moran
 
-Time spent: 1.5 hours spent in total
+Time spent: ~25 hours spent in total
 
 ## User Stories
 
 The following **required** functionality is complete:
 
 * [x] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
-* [ ] Settings page to change the default tip percentage.
+* [x] Settings page to change the default tip percentage.
 
 The following **optional** features are implemented:
-* [ ] UI animations
-* [ ] Remembering the bill amount across app restarts (if <10mins)
-* [ ] Using locale-specific currency and currency thousands separators.
-* [ ] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
+* [x] UI animations
+* [x] Remembering the bill amount across app restarts (if < 10mins)
+* [x] Using locale-specific currency and currency thousands separators.
+* [x] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] Included the round up option (where users can round up the total using the tenths value)
+- [x] Included the option to split the bill (the app allows the user to split the bill for up to twenty people)
+- [x] Included the option to allow the user to customize tip percentage they'd like to apply to the total
 
 ## Video Walkthrough 
 
@@ -34,10 +36,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app:
-The only challenge I faced was trying to convert the changes from iOS 7 to iOS 9 from the tutorial video
-we received. Namely, the billField.text.bridgeToObjectiveC().doubleValue to the new version:
-NSString(string: billField.text!).doubleValue. Besides that, I appreciated how the video was straightforward and 
-easy to follow. 
+This was my first try at the Swift language, so naturally, it was a bit difficult. One thing that really got me was the animation portion. When I failed to get the animation going, I originally thought that the code for my animation would be flawed...I did not think that the rest of the code would be responsible for its lack of function (I saw blocks of code as independent functions, not part of a whole). All in all I learned not only about the Swift programming language, but also how to better my skills of debugging and trying to find ways to make the code more coherent and see it as a working machine as opposed to separate pieces completely. Although I must admit, it was quite difficult to get information from online sources, since many of them contained outdated codes and options that were no longer supported by the new Xcode. Overall, a good learning experience!
 
 ## License
 
