@@ -24,7 +24,7 @@ The following **additional** features are implemented:
 - [x] Included the round up option (where users can round up the total using the tenths value)
 - [x] Included the option to split the bill (the app allows the user to split the bill for up to twenty people)
 - [x] Included the option to allow the user to customize tip percentage they'd like to apply to the total
-- {x] Added an app icon
+- [x] Added an app icon
 
 ## Video Walkthrough
 
