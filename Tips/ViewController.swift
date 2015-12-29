@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 
 class ViewController: UIViewController
+    
 {
     
     @IBOutlet weak var tipControl: UISegmentedControl!
@@ -23,125 +24,111 @@ class ViewController: UIViewController
     @IBOutlet weak var tipInformationView: UIView!
     @IBOutlet weak var roundSwitch: UISwitch!
     
-    var tipPercentage: Float!
-
+    var tipPercentage: Double = 0
     
     override func viewDidLoad() {
-        let now = NSDate()
-        userDefaults.setObject(now, forKey: "previous_time")
-        let previousTime = NSUserDefaults.standardUserDefaults().objectForKey("previous_time") as? NSDate
+        print("viewDidLoad")
         
-        if (previousTime != nil && now.time)
+        billField.text = userDefaults.stringForKey("previous_bill_amount")
         
+        let now = NSDate.timeIntervalSinceReferenceDate()
+        let tenMinute = 10.0 * 60.0
+        //10.0 * 60.0
         
-        
-        
-        }
-
-        }
-    
-    override func viewWillAppear(animated:Bool) {
-        super.viewWillAppear(animated)
-        print("View will appear")
-        billField.becomeFirstResponder()
-        updateTipDisplay()
-        tipControl.selectedSegmentIndex = userDefaults.integerForKey("currentSeg")
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    
-    }
-    
-    func animation() {
-        if billField.text == "" {
-            UIView.animateWithDuration(1.5, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
-                self.tipInformationView.transform = CGAffineTransformMakeTranslation(0, 300)
-                self.billAmountView.transform = CGAffineTransformMakeTranslation(0, 100)
-                }, completion: nil)
-                billField.becomeFirstResponder()
-                print(false)
+        if ((now - userDefaults.doubleForKey("previous_bill_time")) < tenMinute) {
+            billField.text = userDefaults.stringForKey("previous_bill_amount")
             
-        } else if billField.text != "" {
-            UIView.animateWithDuration(1.5, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
-                self.tipInformationView.transform = CGAffineTransformMakeTranslation(0, 0)
-                self.billAmountView.transform = CGAffineTransformMakeTranslation(0, 0)
-                }, completion: nil)
-                print(true)
-        }
-    }
-    
-    @IBAction func onEditingChanged(sender: AnyObject) {
-        animation()
-        let tipPercentages = [userDefaults.floatForKey("lowest_tip"), userDefaults.floatForKey("mid_tip"), userDefaults.floatForKey("highest_tip")]
-//        animation()
-
-        tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
-//        defaults.setInteger((tipControl.selectedSegmentIndex), forKey: "currentSeg")
-        
-        calculateTip(tipPercentage)
-        
-        let billAmount = NSString(string:billField.text!).floatValue
-        let tip = billAmount * tipPercentage
-        var total = billAmount + tip
-        let peoplesAmount = total / NSString(string:counter.text!).floatValue
-        
-//        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-//        currencyFormatter.locale = NSLocale.currentLocale()
-        calculateTip(tipPercentage)
-        
-        userDefaults.setDouble(NSDate.timeIntervalSinceReferenceDate(), forKey: "previous_bill_time")
-        userDefaults.setInteger(tipControl.selectedSegmentIndex, forKey: "previous_index")
-        userDefaults.setFloat(billAmount, forKey: "previous_bill_amount")
-        
-        if roundSwitch.on {
-             total = Float(round(10 * total)/10)
-             calculateTip(tipPercentage)
-             totalLabel.text = String(format: "$%.2f", total)
-             let peoplesAmount = total / NSString(string:counter.text!).floatValue
-             whatPeoplePay.text = String(format: "$%.2f", peoplesAmount)
-        } else if !roundSwitch.on {
-             tipLabel.text = currencyFormatter.stringFromNumber(tip)!
-             totalLabel.text = currencyFormatter.stringFromNumber(total)!
-             whatPeoplePay.text = currencyFormatter.stringFromNumber(peoplesAmount)!
+        } else {
+            
+            userDefaults.setDouble(0, forKey: "previous_bill_amount")
+            billField.text = userDefaults.stringForKey("previous_bill_amount")
+            
+            //            billField.text = ""
         }
         
-
-    }
-
-    @IBAction func onTap(sender: AnyObject) {
-        view.endEditing(true)
-    }
-    
-    override func viewDidAppear(animated:Bool) {
-        super.viewWillAppear(animated)
-        print("View did appear")
-//        if billField.text != "" {
-//            //billField.resignFirstResponder()
-//        }
+        billField.placeholder = currencyFormatter.currencySymbol
+//        billField.text = ""
+        billField.becomeFirstResponder()
+        userDefaults.synchronize()
         
     }
     
     override func viewWillDisappear(animated:Bool) {
         super.viewWillDisappear(animated)
         print("View will disappear")
-        userDefaults.setObject(billField.text, forKey: "savedAmt")
         userDefaults.setInteger((tipControl.selectedSegmentIndex), forKey: "currentSeg")
-
         
     }
+    
     override func viewDidDisappear(animated:Bool) {
         super.viewDidDisappear(animated)
         print("View did disappear")
+        
     }
     
-    func calculateTip(tipPercentage: Float) {
-        let billAmount = NSString(string:billField.text!).floatValue
-        userDefaults.setFloat(billAmount, forKey: "savedAmt")
+    override func viewDidAppear(animated:Bool) {
+        super.viewWillAppear(animated)
+        print("View did appear")
+        
+    }
+    
+    override func viewWillAppear(animated:Bool) {
+        super.viewWillAppear(animated)
+        print("View will appear")
+        updateTipDisplay()
+        animation()
+        tipControl.selectedSegmentIndex = userDefaults.integerForKey("currentSeg")
+        calculateTip()
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    //This function is the animation. If the text field is empty, move the top view and bottom
+    //view down, else move both views up
+    
+    func animation() {
+        if (billField.text ==  "0") || (billField.text == "") {
+            UIView.animateWithDuration(1.5, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
+                self.tipInformationView.transform = CGAffineTransformMakeTranslation(0, 270)
+                self.billAmountView.transform = CGAffineTransformMakeTranslation(0, 70)
+                }, completion: nil)
+            
+        } else {
+            UIView.animateWithDuration(1.5, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
+                self.tipInformationView.transform = CGAffineTransformMakeTranslation(0, 0)
+                self.billAmountView.transform = CGAffineTransformMakeTranslation(0, 0)
+                }, completion: nil)
+        }
+    }
+    
+    @IBAction func onEditingChanged(sender: AnyObject) {
+        let tipPercentages = [userDefaults.doubleForKey("lowest_tip"),
+            userDefaults.doubleForKey("mid_tip"),
+            userDefaults.doubleForKey("highest_tip")]
+        tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
+        calculateTip()
+        animation()
+        roundingTotal(roundSwitch)
+        
+    }
+    
+    @IBAction func onTap(sender: AnyObject) {
+        view.endEditing(true)
+        
+    }
+    
+    //This function calculates the tip and sets their value to the corresponding lables
+    
+    func calculateTip() {
+        let billAmount = NSString(string:billField.text!).doubleValue
+        counter.text = "\(Int(peopleCounter.value))"
+        userDefaults.setDouble(billAmount, forKey: "previous_bill_amount")
         let tip = billAmount * tipPercentage
         let total = billAmount + tip
-        let peoplesAmount = total / NSString(string:counter.text!).floatValue
+        let peoplesAmount = total / NSString(string:counter.text!).doubleValue
         
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         currencyFormatter.locale = NSLocale.currentLocale()
@@ -152,6 +139,9 @@ class ViewController: UIViewController
         
     }
     
+    //This updates the SegmentControl and also grabs the values from the SettingsViewController,
+    //but this is for display purposes
+    
     func updateTipDisplay() {
         tipControl.setTitle("\(Int(userDefaults.floatForKey("lowest_tip") * 100))%", forSegmentAtIndex: 0)
         tipControl.setTitle("\(Int(userDefaults.floatForKey("mid_tip") * 100))%", forSegmentAtIndex: 1)
@@ -159,63 +149,29 @@ class ViewController: UIViewController
         
     }
     
-    @IBAction func addPeople(sender: UIStepper) {
-        let billAmount = NSString(string:billField.text!).floatValue
-        let tip = billAmount * tipPercentage
-        var total = billAmount + tip
-        
-        if roundSwitch.on {
-            self.counter.text = Int(sender.value).description
-            total = Float(round(10 * total)/10)
-            let peoplesAmount = total / NSString(string:counter.text!).floatValue
-            calculateTip(tipPercentage)
-            whatPeoplePay.text = currencyFormatter.stringFromNumber(peoplesAmount)!
-            totalLabel.text = currencyFormatter.stringFromNumber(total)!
-            
-        } else if !roundSwitch.on {
-            self.counter.text = Int(sender.value).description
-            let peoplesAmount = total / NSString(string:counter.text!).floatValue
-            calculateTip(tipPercentage)
-            whatPeoplePay.text = currencyFormatter.stringFromNumber(peoplesAmount)!
-            totalLabel.text = currencyFormatter.stringFromNumber(total)!
-        }
-    }
+    //This action is connected to the UISwitch and allows the total to be rounded to the nearest
+    //tenths value if it is on
     
     @IBAction func roundingTotal(sender: UISwitch) {
-        let billAmount = NSString(string:billField.text!).floatValue
+        let billAmount = NSString(string:billField.text!).doubleValue
         let tip = billAmount * tipPercentage
         var total = billAmount + tip
+        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        currencyFormatter.locale = NSLocale.currentLocale()
         
         if roundSwitch.on {
-            total = Float(round(10 * total)/10)
-            calculateTip(tipPercentage)
+            total = Double(round(10 * total)/10)
             totalLabel.text = currencyFormatter.stringFromNumber(total)!
-            let peoplesAmount = total / NSString(string:counter.text!).floatValue
-            whatPeoplePay.text = currencyFormatter.stringFromNumber(peoplesAmount)!
-
-        } else if !roundSwitch.on {
-            total = billAmount + tip
-            calculateTip(tipPercentage)
-            totalLabel.text = currencyFormatter.stringFromNumber(total)!
-            let peoplesAmount = total / NSString(string:counter.text!).floatValue
+            let peoplesAmount = total / NSString(string:counter.text!).doubleValue
             whatPeoplePay.text = currencyFormatter.stringFromNumber(peoplesAmount)!
             
-          }
-      }
+        } else if !roundSwitch.on {
+            total = billAmount + tip
+            totalLabel.text = currencyFormatter.stringFromNumber(total)!
+            let peoplesAmount = total / NSString(string:counter.text!).doubleValue
+            whatPeoplePay.text = currencyFormatter.stringFromNumber(peoplesAmount)!
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 

@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-       
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,7 +44,7 @@ class SettingsViewController: UIViewController {
         segControl.setTitle("\(Int(midTip * 100))%", forSegmentAtIndex: 1)
         segControl.setTitle("\(Int(highestTip * 100))%", forSegmentAtIndex: 2)
     }
-
+    
     @IBAction func segControlTapped(sender: AnyObject) {
         print(segControl.selectedSegmentIndex)
     }
@@ -52,28 +52,28 @@ class SettingsViewController: UIViewController {
     @IBAction func updateSegment(sender: AnyObject) {
         let newValue = NSString(string: textField.text!).floatValue
         if newValue > 0 {
-        switch segControl.selectedSegmentIndex {
-        case 0:
-            segControl.setTitle("\(Int(newValue))%", forSegmentAtIndex: segControl.selectedSegmentIndex)
-            userDefaults.setFloat((newValue / 100.00), forKey: "lowest_tip")
-            
-        case 1:
-           segControl.setTitle("\(Int(newValue))%", forSegmentAtIndex: segControl.selectedSegmentIndex)
-           userDefaults.setFloat((newValue / 100.00), forKey: "mid_tip")
-        case 2:
-            segControl.setTitle("\(Int(newValue))%", forSegmentAtIndex: segControl.selectedSegmentIndex)
-            userDefaults.setFloat((newValue / 100.00), forKey: "highest_tip")
-        default:
-            print("something didn't work here...")
+            switch segControl.selectedSegmentIndex {
+            case 0:
+                segControl.setTitle("\(Int(newValue))%", forSegmentAtIndex: segControl.selectedSegmentIndex)
+                userDefaults.setFloat((newValue / 100.00), forKey: "lowest_tip")
+                
+            case 1:
+                segControl.setTitle("\(Int(newValue))%", forSegmentAtIndex: segControl.selectedSegmentIndex)
+                userDefaults.setFloat((newValue / 100.00), forKey: "mid_tip")
+            case 2:
+                segControl.setTitle("\(Int(newValue))%", forSegmentAtIndex: segControl.selectedSegmentIndex)
+                userDefaults.setFloat((newValue / 100.00), forKey: "highest_tip")
+            default:
+                print("something didn't work here...")
+            }
         }
-    }
         textField.text = ""
-}
-
+    }
+    
     
     @IBAction func goBack(sender: AnyObject) {
         userDefaults.setInteger((segControl.selectedSegmentIndex), forKey: "currentSeg")
         dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
 }
