@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Tips
 //
-//  Created by Isis on 11/26/15.
+//  Created by Isis Moran on 11/26/15.
 //  Copyright © 2015 codepath. All rights reserved.
 //
 
@@ -16,9 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     var window: UIWindow?
+    
+    //Changes appearance of all segmentControllers in the app 
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let attr = NSDictionary(object: UIFont(name: "HelveticaNeue-Thin", size: 25.0)!, forKey: NSFontAttributeName)
         UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject], forState: .Normal)
+        
+        //Changes appearance of all keyboards used in the app
         
         UITextField.appearance().keyboardAppearance = .Dark
         

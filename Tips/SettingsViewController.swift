@@ -2,7 +2,7 @@
 //  SettingsViewController.swift
 //  Tips
 //
-//  Created by Isis  on 12/3/15.
+//  Created by Isis Moran on 12/3/15.
 //  Copyright © 2015 codepath. All rights reserved.
 //
 
@@ -35,6 +35,9 @@ class SettingsViewController: UIViewController {
     }
     
     
+    //Sets title for all indices of the segmentControl and grabs information from
+    //ViewController
+    
     func displayTitle(){
         let lowestTip = userDefaults.floatForKey("lowest_tip")
         let midTip = userDefaults.floatForKey("mid_tip")
@@ -48,6 +51,10 @@ class SettingsViewController: UIViewController {
     @IBAction func segControlTapped(sender: AnyObject) {
         print(segControl.selectedSegmentIndex)
     }
+    
+    //This allows the segmentControl to update a chosen index and have that value
+    //be replaced by what's in the text field (information that user inputs) upon
+    //pressing the "Save" button
     
     @IBAction func updateSegment(sender: AnyObject) {
         let newValue = NSString(string: textField.text!).floatValue
@@ -67,6 +74,7 @@ class SettingsViewController: UIViewController {
                 print("something didn't work here...")
             }
         }
+        
         textField.text = ""
     }
     
