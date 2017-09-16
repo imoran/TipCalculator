@@ -27,8 +27,6 @@ class ViewController: UIViewController
     var tipPercentage: Double = 0
     
     override func viewDidLoad() {
-        print("viewDidLoad")
-        
         billField.text = userDefaults.stringForKey("previous_bill_amount")
         
         let now = NSDate.timeIntervalSinceReferenceDate()
@@ -40,30 +38,22 @@ class ViewController: UIViewController
             userDefaults.setDouble(0, forKey: "previous_bill_amount")
             billField.text = userDefaults.stringForKey("previous_bill_amount")
         }
-        
         billField.placeholder = currencyFormatter.currencySymbol
         billField.becomeFirstResponder()
         userDefaults.synchronize()
-        
     }
     
     override func viewWillDisappear(animated:Bool) {
         super.viewWillDisappear(animated)
-        print("View will disappear")
         userDefaults.setInteger((tipControl.selectedSegmentIndex), forKey: "currentSeg")
-        
     }
     
     override func viewDidDisappear(animated:Bool) {
         super.viewDidDisappear(animated)
-        print("View did disappear")
-        
     }
     
     override func viewDidAppear(animated:Bool) {
         super.viewWillAppear(animated)
-        print("View did appear")
-        
     }
     
     override func viewWillAppear(animated:Bool) {
@@ -73,7 +63,6 @@ class ViewController: UIViewController
         animation()
         tipControl.selectedSegmentIndex = userDefaults.integerForKey("currentSeg")
         calculateTip()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,7 +100,6 @@ class ViewController: UIViewController
     
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
-        
     }
     
     //This function calculates the tip and sets their value to the corresponding lables
@@ -130,7 +118,6 @@ class ViewController: UIViewController
         tipLabel.text = currencyFormatter.stringFromNumber(tip)!
         totalLabel.text = currencyFormatter.stringFromNumber(total)!
         whatPeoplePay.text = currencyFormatter.stringFromNumber(peoplesAmount)!
-        
     }
     
     //This updates the SegmentControl and also grabs the values from the SettingsViewController,
@@ -140,7 +127,6 @@ class ViewController: UIViewController
         tipControl.setTitle("\(Int(userDefaults.floatForKey("lowest_tip") * 100))%", forSegmentAtIndex: 0)
         tipControl.setTitle("\(Int(userDefaults.floatForKey("mid_tip") * 100))%", forSegmentAtIndex: 1)
         tipControl.setTitle("\(Int(userDefaults.floatForKey("highest_tip") * 100))%", forSegmentAtIndex: 2)
-        
     }
     
     //This action is connected to the UISwitch and allows the total to be rounded to the nearest
