@@ -33,21 +33,15 @@ class ViewController: UIViewController
         
         let now = NSDate.timeIntervalSinceReferenceDate()
         let tenMinute = 10.0 * 60.0
-        //10.0 * 60.0
         
         if ((now - userDefaults.doubleForKey("previous_bill_time")) < tenMinute) {
             billField.text = userDefaults.stringForKey("previous_bill_amount")
-            
         } else {
-            
             userDefaults.setDouble(0, forKey: "previous_bill_amount")
             billField.text = userDefaults.stringForKey("previous_bill_amount")
-            
-            //            billField.text = ""
         }
         
         billField.placeholder = currencyFormatter.currencySymbol
-//        billField.text = ""
         billField.becomeFirstResponder()
         userDefaults.synchronize()
         
@@ -106,8 +100,8 @@ class ViewController: UIViewController
     
     @IBAction func onEditingChanged(sender: AnyObject) {
         let tipPercentages = [userDefaults.doubleForKey("lowest_tip"),
-            userDefaults.doubleForKey("mid_tip"),
-            userDefaults.doubleForKey("highest_tip")]
+                              userDefaults.doubleForKey("mid_tip"),
+                              userDefaults.doubleForKey("highest_tip")]
         tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
         calculateTip()
         animation()
@@ -165,7 +159,7 @@ class ViewController: UIViewController
             let peoplesAmount = total / NSString(string:counter.text!).doubleValue
             whatPeoplePay.text = currencyFormatter.stringFromNumber(peoplesAmount)!
             
-        } else if !roundSwitch.on {
+        } else {
             total = billAmount + tip
             totalLabel.text = currencyFormatter.stringFromNumber(total)!
             let peoplesAmount = total / NSString(string:counter.text!).doubleValue
