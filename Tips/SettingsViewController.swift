@@ -63,7 +63,6 @@ class SettingsViewController: UIViewController {
             case 0:
                 segControl.setTitle("\(Int(newValue))%", forSegmentAtIndex: segControl.selectedSegmentIndex)
                 userDefaults.setFloat((newValue / 100.00), forKey: "lowest_tip")
-                
             case 1:
                 segControl.setTitle("\(Int(newValue))%", forSegmentAtIndex: segControl.selectedSegmentIndex)
                 userDefaults.setFloat((newValue / 100.00), forKey: "mid_tip")
