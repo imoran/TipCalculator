@@ -73,7 +73,6 @@ class SettingsViewController: UIViewController {
                 print("something didn't work here...")
             }
         }
-        
         textField.text = ""
     }
     
